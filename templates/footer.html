@@ -1,0 +1,106 @@
+{% load staticfiles %}
+{% load pretty_forms %}
+    <!-- begin:subscribe -->
+    <div id="subscribe">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-2 col-sm-8 col-xs-12">
+            <h3>Get Newsletter Update</h3>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12">
+          <form method="post" action="{% url 'newslettersignup' %}">
+          {% csrf_token %}
+            <div class="input-group">
+              <input name="email" type="text" class="form-control input-lg" placeholder="Enter your mail" required>
+              <span class="input-group-btn">
+                <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-envelope"></i></button>
+              </span>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:subscribe -->
+
+    <!-- begin:footer -->
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="widget">
+              <h3>Top Reviews</h3>
+              <ul class="list-unstyled">
+              {% for product in x|topreviews %}
+                <li><a href="{% url 'review_product_detail' product.slug %}">{{ product.business_name }}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="widget">
+              <h3>Top Categories</h3>
+              <ul class="list-unstyled">
+              {% for category in x|topcategories %}
+                <li><a href="{{ catgory.get_absolute_url }}">{{ category.name }}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget">
+
+              <h3>Account</h3>
+
+              <ul class="list-unstyled">
+              {% if request.user.is_authenticated %}
+                <li><a href="{% url 'my_reviews' %}">My Reviews</a></li>
+                <li><a href="{% url 'my_fav_list' %}">My Favorites</a></li>
+                <li><a href="{% url 'my_profile' %}">My Profile</a></li>
+                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'account_login' %}">LogIn</a></li>
+                <li><a href="{% url 'account_signup' %}">SignUp</a></li>
+             {% endif %}
+              </ul>
+            </div>
+
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="widget">
+              <h2>SavingSensei.</h2>
+              <address>
+                <strong>Best Organic Reviews on Online Finance Management Apps.</strong><br>
+                savingsensei.com<br>
+                <br>
+                Telp. : +62-345678910<br>
+                Email : hello@arillo.com
+              </address>
+            </div>
+          </div>
+          <!-- break -->
+        </div>
+        <!-- break -->
+
+        <!-- begin:copyright -->
+        <div class="row">
+          <div class="col-md-12 copyright">
+            <p>Copyright &copy; 2016 <strong>SavingSensei.</strong> </p>
+            <p> All Right Reserved.</p>
+            <a href="#top" class="btn btn-success scroltop"><i class="fa fa-angle-up"></i></a>
+            <ul class="list-inline social-links">
+              <li><a href="#" class="icon-twitter" rel="tooltip" title="" data-placement="bottom" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#" class="icon-facebook" rel="tooltip" title="" data-placement="bottom" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#" class="icon-gplus" rel="tooltip" title="" data-placement="bottom" data-original-title="Gplus"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- end:copyright -->
+
+      </div>
+    </div>
+    <!-- end:footer -->

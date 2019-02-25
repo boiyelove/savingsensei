@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="description" content="{% block description_meta %}{% endblock %} | Savingsensei.com">
+    <meta name="author" content="{% block author_meta %}{% endblock %} | Savingsensei.com">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+
+    <title>{% block head_title %}{% endblock %} {% block page_title %} {% endblock %} | SavingSensei</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,800' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+        {% block extra_head %}
+    {% endblock %}
+  </head>
+
+  <body id="top">
+
+    {% include 'navbar.html' %}
+    {% for message in messages %}
+        <div class="container text-center">
+        
+            <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         {{message|safe}}
+        </div>
+        </div>
+    {% empty %}
+    
+    {% endfor %}
+
+
+
+    {% block content %}
+    {% endblock %}
+
+  {% if 'blog' not in request.path %}
+    {% include 'news.html' %}
+  {% endif %}
+
+   {% include 'footer.html' %}
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script src="{% static 'js/gmap3.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.js' %}"></script>
+    <script src="{% static 'js/jquery.jcarousel.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.backstretch.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.raty.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  {% block js_scripts %}
+  
+
+  {% endblock %}
+
+  </body>
+</html>

@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block description_meta %}{{ product.business_name | title }} Reviews {% endblock %}
+{% block author_meta %} {% endblock %}
+{% block head_title %}{{ product.business_name | title }}{% endblock %} {% block page_title %} Reviews {% endblock %}
+
+{% block content %}
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url(img/img01.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="page-title">
+              <h2>Reviews</h2>
+            </div>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Reviews</a></li>
+              <li class="active">{{ product.business_name | title }}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3">
+            <div class="row">
+              <div class="col-md-12 single-post">
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade in active" id="detail">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>{{ product.business_name | title }} Reviews</h2>
+                         <hr/>
+                        
+                        <img src="{{ product.logo.url }}" alt="{{ product.business_name | title }} logo">
+                       <hr/>
+                        <h3>Detail</h3>
+                         <hr/>
+                              <p>{{ product.desc }}</p>
+                         <hr/>
+                        <h3>Reviews</h3>
+                         <hr/>
+
+
+                            {% if not product.review_set.all %}
+                                  <p class="text-center">No Review Yet, be the first to review this product <br/>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                                  <p class="text-center">Add a review<br/><a href="{% url 'review_add' product.slug %}"><i class="fa fa-comment fa-3x"></i> </a></p> <hr/>
+                            {% else %}
+                                <p>Please <a href="{% url 'account_login' %}">Sign In</a> or 
+                                <a href="{% url 'account_signup' %}">Sign Up</a> to leave a review </p>
+                            {% endif %}
+                            {% for review in product.review_set.all %}
+                            <div id = review_{{ review.id }} class= "row">
+                             <div class="col-md-2 text-center">
+                               <div class="circle">{{ review.author.username |slice:"1" | upper }}</div>
+                               <p><a href="#">{% if request.user == review.author %} Me {% else %} {{review.author}} {% endif %}</a></p> 
+                             </div>
+                              <div class="col-md-10">
+                              <p> {{ review.comment }} </p>
+                          
+                              <span class="rating_score pull-left" data-rating="{{ review.score }}"></span>
+                             <span class="pull-right text-center">
+
+                                    <a href= "{% url 'review_detail' review.id %}"><span class="fa fa-eye"></span></a>   {% if request.user == review.author %}|  <a href= "{% url 'review_edit' review.id %}"><span class="fa fa-pencil"></span></a>   |  <a href= "{% url 'review_delete' review.id %}"><span class="fa fa-trash-o"></span></a>
+                              {% endif %}   |   {{ review.created }}   |  {% if review.created != review.updated %} [EDITED] {% endif %}
+                              </span>ss
+                              
+                              <br />
+                              <br />
+                              <hr/>
+                              </div>
+                            </div>
+
+                            {% endfor %}
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                  <!-- break -->
+                  <div class="tab-pane fade" id="location">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div id="map-property"></div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <div class="team-container team-dark">
+                          <div class="team-image">
+                            <img src="{% static 'img/team01.jpg' %}" alt="the team - mikha realestate theme">
+                          </div>
+                          <div class="team-description">
+                            <h3>Katty Sharon</h3>
+                            <p><i class="fa fa-phone"></i> Office : 021-234-5678<br>
+                            <i class="fa fa-mobile"></i> Mobile : +62-3456-78910<br>
+                            <i class="fa fa-print"></i> Fax : 021-234-5679</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <div class="team-social">
+                              <span><a href="#" title="Twitter" rel="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a></span>
+                              <span><a href="#" title="Facebook" rel="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a></span>
+                              <span><a href="#" title="Google Plus" rel="tooltip" data-placement="top"><i class="fa fa-google-plus"></i></a></span>
+                              <span><a href="#" title="Email" rel="tooltip" data-placement="top"><i class="fa fa-envelope"></i></a></span> 
+                              <span><a href="#" title="LinkedIn" rel="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a></span> 
+                            </div>                       
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <form>
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control input-lg" placeholder="Enter name : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control input-lg" placeholder="Enter email : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="telp">Telp.</label>
+                            <input type="text" class="form-control input-lg" placeholder="Enter phone number : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control input-lg" rows="7" placeholder="Type a message : "></textarea>
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+            <div class="widget-white favorite">
+              <a href="#"><i class="fa fa-heart"></i> Add to favorite</a>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Recent Reviews</h3>
+              </div>    
+              <ul>
+              {% for prod in recentreviews %}
+                <li><a href="{% url 'review_product_detail' prod.slug %}">{{prod.business_name}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Categories</h3>
+              </div>    
+              <ul class="list-check">
+              {% for cat in categories %}
+                <li><a href="{{cat.get_absolute_url}}">{{cat.name}} ( {{ cat.product_set.all | length }} )</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Top Reviews</h3>
+              </div>    
+              <ul>
+              {% for items in topreviews %}
+                    <li><a href="{% url 'review_product_detail' items.slug %}">{{items.business_name}}</a></li>
+              {% endfor%}
+
+
+              </ul>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+{% endblock %}
+
+
+{% block js_scripts %}
+<script type="text/javascript">
+
+</script>
+
+
+{% endblock %}
+
+

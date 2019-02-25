@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+{% load pretty_forms %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="container">
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form style="width:300px;" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {% for field in form %}
+  <p>{{ field |addcss:"form-control" }}</p>
+  {% if field.errors %}
+ <div class="alert alert-danger"> {{ field.errors }}</div>
+  {% endif %}
+  {% endfor %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-success btn-lg" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+</div>
+{% endblock %}

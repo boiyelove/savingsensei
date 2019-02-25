@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load account socialaccount %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+<h1>{{request.user.username |capfirst }} Profile</h1>
+<br>
+<hr>
+<form enctype="multipart/form-data" method="post" action="." style="max-width:400px;">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+  <br>
+  <hr>
+ <input type=submit class="btn btn-success" value="Update my Info">
+ </form>
+
+
+ <br>
+ <br>
+ <hr>
+ <h2> Connect Social Accounts</h2>
+ <ul>
+<li> <a href="{% provider_login_url "twitter" process="connect" %}">Connect a Twitter account</a></li>
+<li> <a href="{% provider_login_url "facebook" process="connect" %}">Connect a facebook account</a></li>
+ <li><a href="{% provider_login_url "linkedin_oauth2" process="connect" %}">Connect a linkedin account</a></li>
+<li>  <a href="{% provider_login_url "google" process="connect" %}">Connect a google account</a></li>
+</ul>
+ <hr>
+ </div>
+{% endblock %} 

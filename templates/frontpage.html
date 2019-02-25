@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block page_title %} {{page_title}}{% endblock %}
+{% block content %}
+
+
+    <!-- begin:header -->
+    <div id="header" class="header-slide" style="position: relative; z-index: 0; background: none;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="quick-search">
+              <div class="row">
+                <form role="form" method="get" action="/search/">
+  
+                  <div class="col-md-12 col-sm-12">
+                  <div class="input-group">
+                  <input type="text" class="form-control input-lg" name='q' placeholder="Search for something" required>
+                  <span class="input-group-btn">
+                  <button type="submit" class="btn btn-success btn-lg">Get Me Results</button>
+                  </span>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+          <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; z-index: -999998; position: absolute; width: 1366px; height: 450px;"><img style="position: absolute; margin: 0px; padding: 0px; border: none; max-height: none; max-width: none; z-index: -999999; width: 1366px; height: 906.683px; left: 0px; top: -228.341px;" src="{% static 'slide/bg02.jpg' %}"></div></div>
+
+
+    </div>
+    <!-- end:header -->
+
+
+
+    <!-- begin:service -->
+    <div id="service">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Best Organic Reviews<small>You need to do is very simple just join us</small></h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="{% url 'account_signup' %}"><i class="fa fa-lock"></i></a>
+              </div>
+              <div class="service-content">
+                <h3>SIGN UP</h3>
+                <p>to join our community of friendly analysts.</p>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-user"></i></a>
+              </div>
+              <div class="service-content">
+                <h3>UPDATE PROFILE</h3>
+                <p>and let us know you are not a robot.</p>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-search"></i></a>
+              </div>
+              <div class="service-content">
+                <h3>SEARCH</h3>
+                <p>for your favorite platform.</p>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-comment"></i></a>
+              </div>
+              <div class="service-content">
+                <h3>REVIEW</h3>
+                <p>and we make your voice heard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <!-- end:service -->
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <!-- begin:latest -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading-title">
+              <h2>Newly Added</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+ {% for item in newlyadded %}
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="property-container">
+              <div class="property-image">
+                 <img src="{{ item.logo.url }}" class="img-responsive" alt="partner of arillo responsive real estate theme">
+
+              </div>
+              <div class="property-features">
+              <ul class="list-inline">
+
+              <li>  <a href="{% url 'review_product_detail' item.slug %}" class="whitelink"> 5 <i class="fa fa-star"></i></a></li>
+              <li>
+              {{ item.review_set.all | length }} <i class="fa fa-comment"></i></li>
+              <li>
+               <i class="fa fa-heart"></i></li>
+              <li> <a class="whitelink" href="{% url 'review_add' item.slug %}"> <i class="fa fa-plus"></i></a></li>
+              </ul>
+              </div>
+
+              <div class="property-content">
+                <h3><a href="{% url 'review_product_detail' item.slug %}">{{ item.business_name | title }}</a> <small>{{ item.desc | truncatechars:160 }}</small></h3>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+       
+  {% empty %}
+<h1> No Reviews Added Yet </h1>
+ {% endfor %}
+   
+
+         
+        </div>
+        <!-- end:latest -->
+
+        <!-- begin:for-sale -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading-title">
+              <h2>Popular Reviews</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+{% for item in popularreviews %}
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="property-container">
+              <div class="property-image">
+                <img src="{% static 'img/wealthfront-logo.png' %}" class="img-responsive" alt="partner of arillo responsive real estate theme">
+              </div>
+              <div class="property-content">
+                <h3><a href="#">{{ item.business_name | title }}</a>  <small>Category: {{ item.category | title }}</small></h3>
+                <p>{{ item.desc |truncatechars:160 }}</p>
+              </div>
+              <div class="property-features">
+              <ul class="list-inline">
+              <li>
+               {{ item.review_set.all | length }} <i class="fa fa-comment"></i></li>
+              <li>   5 <i class="fa fa-star"></i></li>
+              <li>  <i class="fa fa-plus"></i></li>
+              </ul>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+        
+{% empty %}
+<h1> No Popular Reviews Yet </h1>
+{% endfor %}
+        </div>
+        <!-- end:for-sale -->
+
+
+      </div>
+    </div>
+    <!-- end:content -->
+
+
+{% endblock %}

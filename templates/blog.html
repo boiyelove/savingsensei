@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block description_meta %}Blog Home{% endblock %}
+{% block author_meta %}Savingsensei.com{% endblock %}
+{% block head_title %}Blog{% endblock %} {% block page_title %} Home {% endblock %}
+{% block content %}
+ 
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url("{% static 'img/img01.jpg' %}");">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="page-title">
+              <h2>Blog</p>
+            </div>
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active">Blog</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          {% for post in all_posts %}
+            <div class="blog-container">
+              <div class="blog-image" style="background-image: url('{{ post.image.url }});">
+                <div class="blog-author"><img src="{{ thisuser.ReviewProfile.headshot }}" alt="{{post.author}} - blog author"> <a href="#">{{post.author}}</a> {{post.created}}</div>
+              </div>
+              <div class="blog-content">
+                <div class="blog-title">
+                  <h2>{{post.title |capfirst}}</h2>
+                  <h3>...{{post.tagline }}</h3>
+                </div>
+
+                <div class="blog-text">
+                  <p>{{post.content |truncatewords_html:100 }}.</p>
+                  <p><a href="{% url 'blogpost_detail' post.slug %}" class="btn btn-success">Read more <i class="fa fa-arrow-circle-o-right"></i></a></p>
+                </div>
+
+              </div>
+            </div>
+            <!-- break -->
+          {% empty %}
+          <h1> No Blog Posts Yet </h1>
+          {% endfor %}
+
+            <div class="blog-paged">
+              <ul class="pager">
+              {% if all_posts.has_previous %}
+                <li class="previous"><a href="?page={{all_posts.previous_page_number}}">&larr; Newer</a></li>
+              {% endif %}
+              {% if all_posts.has_next %}
+               <li class="next"><a href="?page={{all_posts.next_page_number}}">Older &rarr;</a></li>
+              {% endif %}
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+}
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_title %}{{request.user}}{% endblock %} {% block page_title %} Dashboard {% endblock %}
+
+{% block content %}
+<div class="row margin100 bg-green">
+<div class="container margin100">
+<p>
+<div class="row">
+<div class='col-md-4'>
+<a class="bigger" href="{% url 'my_profile'%}">
+<i class="fa fa-user fa-3x"></i>
+</a>
+<h3>My Profile</h3>
+
+</div>
+<div class='col-md-4'>
+<a class="bigger" href="{% url 'my_reviews'%}">
+<i class="fa fa-comment fa-3x"></i>
+</a>
+<h3>My Reviews</h3>
+</div>
+<div class='col-md-4'>
+<a class="bigger" href="{% url 'my_fav_list'%}">
+<i class="fa fa-heart fa-3x"></i>
+</a>
+<h3>My List</h3>
+</div>
+</div>
+<br>
+<hr>
+<div class="row">
+<br>
+<div class='col-md-4'>
+	<a class="bigger" href="#">
+	<i class="fa fa-envelope fa-3x"></i>
+	</a>
+	<h3>Messages</h3>
+</div>
+<div class='col-md-4'>
+	<a class="bigger" href="{% url 'contact' %}">
+	<i class="fa fa-cog fa-spin fa-3x"></i>
+	</a>
+	<h3>Support</h3>
+</div>
+
+<div class='col-md-4'>
+
+{% if request.user.is_superuser %}
+<a class="bigger" href="/admin/"><i class="fa fa-user-md fa-3x"></i>
+<h3>Admin</h3>
+</a>
+{% else %}
+<a class="bigger" href="/">
+<i class="fa fa-home fa-3x"></i>
+</a>
+<h3>Browse</h3>
+{% endif %}
+
+</div>
+
+</div>
+</p>
+</div>
+</div>
+
+{% endblock %}

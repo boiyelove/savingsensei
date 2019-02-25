@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block description_meta %}{{ thisreview.post.business_name | title }} Reviews {% endblock %}
+{% block author_meta %} {{ thisreview.author }} {% endblock %}
+{% block head_title %}{{ thisreview.comment |truncatewords:6 |title }}{% endblock %} {% block page_title %} {{ thisreview.post.business_name | title }} Reviews {% endblock %}
+{% block content %}
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url(img/img01.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="page-title">
+              <h2>Reviews</h2>
+            </div>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Reviews</a></li>
+              <li class="active">{{ thisreview.post.business_name | title }}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3">
+            <div class="row">
+              <div class="col-md-12 single-post">
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade in active" id="detail">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>{{ thisreview.post.business_name | title }} Review</h2>
+                         <hr/>
+                        
+                        <img src="{{ thisreview.post.logo.url }}" alt="{{ thisreview.post.business_name | title }} logo">
+                       <hr/>
+                        <h3>Detail</h3>
+                         <hr/>
+                              <p>{{ thisreview.post.desc }}</p>
+                         <hr/>
+                        <h3>Reviews</h3>
+                         <hr/>
+                        {% if request.user.is_authenticated %}
+                              <div class="row"> 
+                            <div id = review_{{ review.id }} class= "row">
+                             <div class="col-md-2 text-center">
+                               <div class="circle">{{ thisreview.author.username |slice:"1" | upper }}</div>
+                               <p><a href="#">{% if request.user == thisreview.author %} Me {% else %} {{thisreview.author}} {% endif %}</a></p> 
+                             </div>
+                              <div class="col-md-10">
+                              <p> {{ thisreview.comment }} </p>
+                              <span class="rating_score pull-left" data-rating="{{ thisreview.score }}"></span>
+                             <span class="pull-right text-center">
+                             
+                                      {% if request.user == thisreview.author %}|  <a href= "{% url 'review_edit' thisreview.id %}"><span class="fa fa-pencil"></span></a>   |  <a href= "{% url 'review_delete' thisreview.id %}"><span class="fa fa-trash-o"></span></a>
+                              {% endif %}   |   {{ review.created }} {{ thisreview.created }} {% if thisreview.created != thisreview.updated %} [EDITED] {% endif %}
+                              </span>
+                              
+                              <br />
+                              <br />
+                              <hr/>
+                              </div>
+                            </div>
+                               </div>
+
+                        {% else %}
+                        <p>Please <a href="{% url 'account_login' %}">Sign In</a> or 
+               <a href="{% url 'account_signup' %}">Sign Up</a> to leave a review </p>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                  <!-- break -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+            <div class="widget-white favorite">
+              <a href="#"><i class="fa fa-heart"></i> Add to favorite</a>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Recent Reviews</h3>
+              </div>    
+              <ul>
+              {% for prod in recentreviews %}
+                <li><a href="{% url 'review_product_detail' prod.slug %}">{{prod.business_name}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Categories</h3>
+              </div>    
+              <ul class="list-check">
+              {% for cat in categories %}
+                <li><a href="{{cat.get_absolute_url}}">{{cat.name}} ( {{ cat.product_set.all | length }} )</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Top Reviews</h3>
+              </div>    
+              <ul>
+              {% for items in topreviews %}
+                    <li><a href="{% url 'review_product_detail' items.slug %}">{{items.business_name}}</a></li>
+              {% endfor%}
+
+
+              </ul>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+{% endblock %}
+
+
+{% block js_scripts %}
+<script type="text/javascript">
+ function AddComment(){
+  // $.ajax(
+  //   type: "POST",
+  //   url: '.',
+  //   asyc: true,
+  //   data: {
+      var commentform = document.getElementById("thisreview.post_comrat")
+      var comment = commentform.comment.val();
+      var rating = commentform.score.val();
+      console.log(comment);
+      console.log(rasting);
+    }
+
+
+</script>
+
+
+{% endblock %}
+
+

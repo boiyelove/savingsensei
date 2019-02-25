@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+
+{% block description_meta %}{% for product in result %} {{ product.business_name | title }} Reviews, {% endfor %} {% endblock %}
+{% block author_meta %} {% endblock %}
+{% block page_title %} {{ page_title }} {% endblock %}
+
+
+{% block content %}
+    <!-- begin:header -->
+{% if "/search/" in request.get_full_path %}
+              <div class="row">
+              <div class="container">
+              <div class="col-md-4 col-sm-4 pull-right"  style="margin-top: 100px;">
+                <form role="form" method="get" action="/search/">
+                  <div class="input-group">
+                  <input type="text" class="form-control input-lg" name='q' placeholder="Search for something" required>
+                  <span class="input-group-btn">
+                  <button type="submit" class="btn btn-success btn-lg">Search Again</button>
+                  </span>
+                  </div>
+                </form>
+               </div>
+              </div>
+              </div>
+{% endif %}
+    <!-- end:header -->
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="heading-title heading-title-alt">
+                  <h3>{{ page_title |capfirst }}</h3>
+                </div>
+              </div>
+            </div>
+
+
+
+          <!-- break -->
+{% for item in results %}
+            <!-- begin:product -->
+            <div class="row container-realestate">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="property-container">
+                  <div class="property-image">
+                    <img src="{{ item.logo.url }}" alt="mikha real estate theme">
+                    <div class="property-status">
+                      <span>{{ item.review_set.all | length }} <i class="fa fa-comment"></i></span>
+                    </div>
+                  </div>
+                  <div class="property-content">
+                <h3><a href="{% url 'review_product_detail' item.slug %}">{{ item.business_name | title }}</a> <small>{{ item.desc | truncatechars:80 }}</small></h3>
+                  </div>
+                </div>
+              </div>
+              <!-- break -->
+            </div>
+            <!-- end:product -->
+{% empty %}
+<h2>Nothing here yet</h2>
+
+{% endfor %}
+
+            <!-- begin:pagination -->
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="pagination">
+                {% if results.has_previous %}
+                  <li><a href="#">&laquo;</a></li>
+                {% endif %}
+                {% for page in results.page_range %}
+                  {% if page == results.number %}
+                  <li class="active"><a href="#">{{page}}<span class="sr-only">(current)</span></a></li>
+                  {% else %}
+                  <li><a href="?page={{page}}">{{page}}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if results.has_next %}
+                  <li><a href="?page={{results.next_page_number}}">&laquo;</a></li>
+                {% endif %}
+
+                </ul>
+              </div>
+            </div>
+            <!-- end:pagination -->
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Recent Reviews</h3>
+              </div>    
+              <ul>
+              {% for prod in recentreviews %}
+                <li><a href="{% url 'review_product_detail' prod.slug %}">{{prod.business_name}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Categories</h3>
+              </div>    
+              <ul class="list-check">
+              {% for cat in categories %}
+                <li><a href="{{cat.get_absolute_url}}">{{cat.name}} ( {{ cat.product_set.all | length }} )</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Top Reviews</h3>
+              </div>    
+              <ul>
+              {% for items in topreviews %}
+                    <li><a href="{% url 'review_product_detail' items.slug %}">{{items.business_name}}</a></li>
+              {% endfor%}
+
+
+              </ul>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+{% endblock %}

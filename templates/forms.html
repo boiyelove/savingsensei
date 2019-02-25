@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load prettyforms %}
+
+{% block content %}
+<form method="post" action="">
+{% csrf_token %}
+  {% for field in form %}
+  <p>{{ field |addcss:"form-control" }}</p>
+  {% if field.errors %}
+ <div class="alert alert-danger"> {{ field.errors }}</div>
+  {% endif %}
+  {% endfor %}
+ <input type=submit class="btn btn-success" value="Update my Info">
+ </form>
+{% endblock %}

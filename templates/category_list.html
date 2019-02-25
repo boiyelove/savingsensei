@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url(img/img01.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="page-title">
+              <h2>Category : <span>Villa</span></p>
+            </div>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Category</a></li>
+              <li class="active">Villa</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3">
+            <!-- begin:sorting -->
+            <div class="row sort">
+              <div class="col-md-8 col-sm-8 col-xs-9">
+                <form class="form-inline" role="form">
+                  <span>Sort by : </span>
+                  <div class="form-group">
+                    <label class="sr-only" for="sortby">Sort by : </label>
+                    <select class="form-control">
+                      <option>Most Recent</option>
+                      <option>Price (Low &gt; High)</option>
+                      <option>Price (High &gt; Low)</option>
+                      <option>Most Popular (Low &gt; High)</option>
+                    </select>
+                  </div>
+                  <span>Show : </span>
+                  <div class="form-group">
+                    <label class="sr-only" for="show">Show : </label>
+                    <select class="form-control">
+                      <option>6</option>
+                      <option>10</option>
+                      <option>15</option>
+                      <option>20</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- end:sorting -->
+
+            <!-- begin:product -->
+            <div class="row container-realestate">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="property-container">
+                  <div class="property-content-list">
+                    <div class="property-image-list">
+                      <img src="{% static 'img/img12.jpg' %}" alt="mikha real estate theme">
+                      <div class="property-price">
+                        <h4>Offices</h4>
+                        <span>$30,000<small>/month</small></span>
+                      </div>
+                      <div class="property-status">
+                        <span>For Rent</span>
+                      </div>
+                      <div class="property-features">
+                        <span><i class="fa fa-home"></i> 7,000 m<sup>2</sup></span>
+                        <span><i class="fa fa-hdd-o"></i> 3 Bed</span>
+                        <span><i class="fa fa-male"></i> 2 Bath</span>
+                        <span><i class="fa fa-building-o"></i> 2 Floors</span>
+                        <span><i class="fa fa-car"></i> 2 Garages</span>
+                      </div>
+                    </div>
+                    <div class="property-text">
+                      <h3><a href="#">Luxury Office</a> <small>22, JJ Road, Yogyakarta</small></h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur.</p>
+                      <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- break -->
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="property-container">
+                  <div class="property-content-list">
+                    <div class="property-image-list">
+                      <img src="{% static 'img/img13.jpg' %}" alt="mikha real estate theme">
+                      <div class="property-price">
+                        <h4>Villa</h4>
+                        <span>$30,000<small>/month</small></span>
+                      </div>
+                      <div class="property-status">
+                        <span>For Rent</span>
+                      </div>
+                      <div class="property-features">
+                        <span><i class="fa fa-home"></i> 7,000 m<sup>2</sup></span>
+                        <span><i class="fa fa-hdd-o"></i> 3 Bed</span>
+                        <span><i class="fa fa-male"></i> 2 Bath</span>
+                        <span><i class="fa fa-building-o"></i> 2 Floors</span>
+                        <span><i class="fa fa-car"></i> 2 Garages</span>
+                      </div>
+                    </div>
+                    <div class="property-text">
+                      <h3><a href="#">Land In Central Park</a> <small>22, JJ Road, Yogyakarta</small></h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur.</p>
+                      <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- break -->
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="property-container">
+                  <div class="property-content-list">
+                    <div class="property-image-list">
+                      <img src="{% static 'img/img14.jpg' %}" alt="mikha real estate theme">
+                      <div class="property-price">
+                        <h4>Villa</h4>
+                        <span>$30,000<small>/month</small></span>
+                      </div>
+                      <div class="property-status">
+                        <span>For Rent</span>
+                      </div>
+                      <div class="property-features">
+                        <span><i class="fa fa-home"></i> 7,000 m<sup>2</sup></span>
+                        <span><i class="fa fa-hdd-o"></i> 3 Bed</span>
+                        <span><i class="fa fa-male"></i> 2 Bath</span>
+                        <span><i class="fa fa-building-o"></i> 2 Floors</span>
+                        <span><i class="fa fa-car"></i> 2 Garages</span>
+                      </div>
+                    </div>
+                    <div class="property-text">
+                      <h3><a href="#">Luxury Villa In Rego Park</a> <small>22, JJ Road, Yogyakarta</small></h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur.</p>
+                      <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- break -->
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="property-container">
+                  <div class="property-content-list">
+                    <div class="property-image-list">
+                      <img src="{% static 'img/img15.jpg' %}" alt="mikha real estate theme">
+                      <div class="property-price">
+                        <h4>Villa</h4>
+                        <span>$30,000<small>/month</small></span>
+                      </div>
+                      <div class="property-status">
+                        <span>For Rent</span>
+                      </div>
+                      <div class="property-features">
+                        <span><i class="fa fa-home"></i> 7,000 m<sup>2</sup></span>
+                        <span><i class="fa fa-hdd-o"></i> 3 Bed</span>
+                        <span><i class="fa fa-male"></i> 2 Bath</span>
+                        <span><i class="fa fa-building-o"></i> 2 Floors</span>
+                        <span><i class="fa fa-car"></i> 2 Garages</span>
+                      </div>
+                    </div>
+                    <div class="property-text">
+                      <h3><a href="#">The Urban Life</a> <small>22, JJ Road, Yogyakarta</small></h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur.</p>
+                      <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- break -->
+            </div>
+            <!-- end:product -->
+
+            <!-- begin:pagination -->
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="pagination">
+                  <li class="disabled"><a href="#">&laquo;</a></li>
+                  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- end:pagination -->
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+            <div class="widget widget-white">
+              <div class="widget-header">
+                <h3>Advance Search</h3>
+              </div>    
+              <form role="form" class="advance-search">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-success">
+                    <input type="radio" name="options" id="option1"> For Rent
+                  </label>
+                  <label class="btn btn-success">
+                    <input type="radio" name="options" id="option2"> For Sale
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <select class="form-control">
+                    <option>Miami</option>
+                    <option>Doral</option>
+                    <option>Little Havana</option>
+                    <option>Perrine</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="type">Property Type</label>
+                  <select class="form-control">
+                    <option>Office</option>
+                    <option>Shop</option>
+                    <option>Villa</option>
+                    <option>Apartment</option>
+                    <option>Single Family Home</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="beds">Beds</label>
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="baths">Baths</label>
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="min-price">Min Price</label>
+                  <select class="form-control">
+                    <option>$1,000</option>
+                    <option>$5,000</option>
+                    <option>$10,000</option>
+                    <option>$20,000</option>
+                    <option>$50,000</option>
+                    <option>$350,000</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="max-price">Max Price</label>
+                  <select class="form-control">
+                    <option>$9,000</option>
+                    <option>$19,000</option>
+                    <option>$40,000</option>
+                    <option>$100,000</option>
+                    <option>$800,000</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="min-area">Min Area</label>
+                  <input type="text" class="form-control" placeholder="Min Area">
+                </div>
+                <div class="form-group">
+                  <label for="max-area">Max Area</label>
+                  <input type="text" class="form-control" placeholder="Max Area">
+                </div>
+                <input type="submit" name="submit" value="Search" class="btn btn-success btn-block">
+              </form>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Categories</h3>
+              </div>    
+              <ul>
+                <li><a href="#">Peer to Peer Lending (Investors)</a></li>
+                <li><a href="#">Robo Advisors</a></li>
+                <li><a href="#">Personal Loans</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+{% endblock %}

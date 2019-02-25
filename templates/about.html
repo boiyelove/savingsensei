@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block description_meta %}About Us{% endblock %}
+{% block author_meta %}Savingsensei.com{% endblock %}
+{% block head_title %}{% endblock %} {% block page_title %}About{% endblock %}
+{% block content %}
+
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url(img/img01.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="page-title">
+              <h2>About</p>
+            </div>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li class="active">About</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="blog-container">
+              <div class="blog-content">
+                <div class="blog-image" style="background-image: url(' {% static  "img/img16.jpg"  %}');">
+                  <div class="blog-author"><img src="{% static 'img/logos.png' %}" alt="SavingSensei"> SavingSensei</div>
+                </div>
+                <div class="blog-title">
+                  <h2>Our Story</h2>
+                  <h3>...Emmm we began from nothing</h3>
+                </div>
+
+                <div class="blog-text">
+                  <p style="margin-bottom:50px;">
+                  {% autoescape off %}
+                  {{website_item.about | title }}
+                  {% endautoescape %}
+                  </p>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+{% endblock %}

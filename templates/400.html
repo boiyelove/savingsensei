@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>        
+        <!-- META SECTION -->
+        <title>Bad Request |SavingSensei</title>           
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION  -->   
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css'" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,800' rel='stylesheet' type='text/css'>
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+            html, body {
+    min-height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background: #f5f5f5 url('./img/bg.png') left top repeat;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #656d78;
+    overflow-x: hidden;
+}
+
+html * {
+    outline: none !important;
+}
+
+.error-container {
+    width: 500px;
+    margin: 50px auto 0px;
+}
+
+.error-container .error-code {
+    float: left;
+    width: 100%;
+    font-size: 135px;
+    line-height: 130px;
+    text-align: center;
+    color: #333;
+    font-weight: 300;
+}
+
+.error-container .error-text {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 26px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+.error-container .error-actions {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.error-container .error-subtext {
+    float: left;
+    width: 100%;
+    margin: 30px 0px 10px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #AAA;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+        </style>
+        <!-- EOF CSS INCLUDE -->                                     
+    </head>
+    <body>
+        <div class="error-container">
+            <div class="error-code">400</div>
+            <div class="error-text">bad request</div>
+            <div class="error-subtext">Unfortunately we're having trouble loading the page you are looking for. Please wait a moment and try again or use action below.</div>
+            <div class="error-actions">                                
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-info btn-block btn-lg" onClick="document.location.href = 'index.html';">Back to dashboard</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-block btn-lg" onClick="history.back();">Previous page</button>
+                    </div>
+                </div>                                
+            </div>
+            <div class="error-subtext">Or you can use search to find anything you need.</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search..." class="form-control"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary"><span class="fa fa-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                 
+    </body>
+</html>
+
+
+
+
+
+
